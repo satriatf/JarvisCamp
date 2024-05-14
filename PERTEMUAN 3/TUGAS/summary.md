@@ -1,0 +1,1 @@
+Yang dipelajari pada pertemuan ketiga disini kita mengenal tentang variabel, tipe data, function, operator aritmatika, operator pembanding, operator kondisional, conditional, dan perulangan
