@@ -12,7 +12,7 @@ class TaskController extends Controller
     {
             // mendapat tugas dari model
             $tasks = Task::all();
-            dd($tasks);
+            // dd($tasks);
             return view("task.index",[
                 "tasks"=> $tasks
             ]);
