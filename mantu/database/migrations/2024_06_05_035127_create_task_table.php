@@ -15,8 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->date('deadline');
-            $table->string('status');
             $table->text('description');
+            // $table->foreignId('status_id');
+
+            $table->unsignedBigInteger('status_id');
+
+            $table->foreign('status_id')->references('id')->on('statuses');
             $table->timestamps();
         });
     }

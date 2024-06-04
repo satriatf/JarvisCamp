@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Task extends Model
 {
@@ -11,7 +12,17 @@ class Task extends Model
 
     protected $table = 'task';
 
-    protected $filiable = ['name', 'deadline', 'status', 'description'];
+    protected $fillable = [
+        'name',
+        'deadline',
+        'status',
+        'description',
+    ];
+
+    public function status()
+    {
+        return $this->BelongsTo(Status::class);
+    }
     // protected static $tasks = [
     //     [
     //         'id' => 1,
