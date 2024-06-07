@@ -13,7 +13,7 @@ class Task extends Model
     protected $table = 'task';
 
     protected $fillable = [
-        'name',
+        'nama',
         'deadline',
         'status',
         'description',
@@ -22,6 +22,12 @@ class Task extends Model
     public function status()
     {
         return $this->BelongsTo(Status::class);
+    }
+    public function statuses(){
+        return $this->hasOne(Status::class,'id','status_id');
+    }
+    public function categories(){
+        return $this->hasOne(Categories::class,'id','categories_id');
     }
     // protected static $tasks = [
     //     [

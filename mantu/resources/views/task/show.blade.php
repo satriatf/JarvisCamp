@@ -1,7 +1,7 @@
 @extends('template')
 @section('content')
     <div class="container mt-5">
-        <h1 class="text-center">{{ $task['name'] }}</h1>
+        <h1 class="text-center">{{ $task['nama'] }}</h1>
         <hr>
         <div class="card">
             <div class="card-body">

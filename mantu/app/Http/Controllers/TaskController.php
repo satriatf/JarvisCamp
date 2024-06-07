@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categories;
+use App\Models\Status;
 use App\Models\Task;
 use Illuminate\Http\Request;
 
@@ -24,61 +26,53 @@ class TaskController extends Controller
         return view('task.list', compact('tasks'));
     }
 
-    public function create()
-    {
-        return view('task.create');
+    public function create(){
+        $statuses = Status::All();    
+        $categories = Categories::All();    
+        return view("task.create",[
+            "statuses"=> $statuses,
+            "categories"=> $categories,
+        ]);
     }
-
-    public function store(Request $request)
-    {
-        // dd($request->all());
+    public function store(Request $request){
         $data = $request->validate([
-            'name'=>'required|max:100|min:3',
+            'nama'=>'required|max:100|min:3',
             'deadline'=>'required|date',
-            'status'=> 'required|in:Belum Dikerjakan,Sedang Dikerjakan,Selesai',
+            // 'status'=> 'required|in:Belum Dikerjakan,Sedang Dikerjakan,Selesai',
             'description'=> 'required',
+            'status_id'=>'nullable',
+            'categories_id'=>'nullable',
         ]);
         Task::create($data);
-            return redirect()->route('tasks.list');
+        return redirect()->route('tasks.list');
     }
 
-    public function edit(string $id)
-    {
-        $task = Task::find($id);
-        return view('task.edit', compact('task'));
+    public function edit(string $id){
+        $task = Task::find($id);    
+        $statuses = Status::All();    
+        $categories = Categories::All();   
+        return view('task.edit',compact('task'),[
+            'statuses'=> $statuses,
+            'categories'=> $categories
+        ]);
     }
-
-    public function update(Request $request, string $id)
-    {
-        $request->validate([
-            'name'=>'required|max:100|min:3',
+    public function update(Request $request, string $id){
+        $data = $request->validate([
+            'nama'=>'required|max:100|min:3',
             'deadline'=>'required|date',
-            'status'=> 'required|in:Belum Dikerjakan,Sedang Dikerjakan,Selesai',
             'description'=> 'required',
-        ]);
+            'status_id'=>'nullable',
+            'categories_id'=>'nullable',
 
+        ]);
         $task = Task::find($id);
-
-        $task->update([
-            'name'=> $request->name,
-            'deadline'=>  $request->deadline,
-            'status'=>  $request->status,
-            'description'=>  $request->description,
-        ]);
-
+        $task->update($data);
         return redirect()->route('tasks.list');
     }
-
-    public function delete(string $id)
-    {
+    public function delete(string $id){
         Task::find($id)->delete();
-
         return redirect()->route('tasks.list');
     }
-
-
-
-
     // Menampilkan detail tugas
     public function show($id)
     {

@@ -14,7 +14,7 @@ class TaskSeeder extends Seeder
     public function run(): void
     {
         Task::create([
-            'name'=>'Tugas MTK',
+            'nama'=>'Tugas MTK',
             'deadline'=>'2024-08-05',
             'status'=>'belum dikerjakan',
             'description'=>'ini Tugas MTK'

@@ -11,6 +11,26 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
                     Task
                 </a>
+                <a class="nav-link" href="{{ route('projects') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Projects
+                </a>
+                <a class="nav-link" href="{{ route('tasks.list') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Tabel Task
+                </a>
+                <a class="nav-link" href="{{ route('projects.list') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Tabel projects
+                </a>
+                <a class="nav-link" href="{{ route('categories.list') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Tabel Categories
+                </a>
+                <a class="nav-link" href="{{ route('status.list') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Tabel Status
+                </a>
             </div>
         </div>
         <div class="sb-sidenav-footer">

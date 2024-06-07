@@ -2,25 +2,25 @@
 
 @section('content')
     <div class="container">
-        <h1>Tambah Data Tugas</h1>
+        <h1>Tambah Data</h1>
         <div class="card">
             <div class="card-body">
                 @if (count($errors) > 0)
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                 @endif
-                <form method="POST" action="{{ route('tasks.store') }}">
+                <form action="{{ route('tasks.store') }}" method="POST">
                     @csrf
                     <div class="form-group row mb-3">
-                        <label for="name" class="col-4 col-form-label">Nama</label>
+                        <label for="nama" class="col-4 col-form-label">Nama</label>
                         <div class="col-8">
-                            <input id="name" name="name" placeholder="Masukkan Nama Tugas" type="text"
-                                class="form-control" value="{{ old('name') }}">
+                            <input id="name" name="nama" placeholder="Nama Tugas" type="text"
+                                class="form-control" value="{{ old('nama') }}">
                         </div>
                     </div>
                     <div class="form-group row mb-3">
@@ -31,14 +31,25 @@
                         </div>
                     </div>
                     <div class="form-group row mb-3">
-                        <label for="status" class="col-4 col-form-label">Status</label>
+                        <label for="status_id" class="col-4 col-form-label">Status</label>
                         <div class="col-8">
-                            <select id="status" name="status" class="form-control">
-                                <option value="Belum Dikerjakan"{{ old('status') == 'belum Dikerjakan' ? 'selected' : '' }}>Belum
-                                    Dikerjakan</option>
-                                <option value="Sedang Dikerjakan"{{ old('status') == 'Sedang Dikerjakan' ? 'selected' : '' }}>
-                                    Sedang Dikerjakan</option>
-                                <option value="Selesai"{{ old('status') == 'selesai' ? 'selected' : '' }}>Selesai</option>
+                            <select id="status_id" name="status_id" class="form-control">
+                                @foreach ($statuses as $status)
+                                    <option value="{{ $status->id }}"{{ old('status_id') == $status->id ? 'selected' : '' }}>
+                                        {{ $status->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-3">
+                        <label for="categories_id" class="col-4 col-form-label">categories </label>
+                        <div class="col-8">
+                            <select id="categories_id" name="categories_id" class="form-control">
+                                @foreach ($categories as $categori)
+                                    <option
+                                        value="{{ $categori->id }}"{{ old('categories_id') == $categori->id ? 'selected' : '' }}>
+                                        {{ $categori->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>

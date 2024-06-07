@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('task', function (Blueprint $table) {
+        Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->date('deadline');
-            $table->text('description');
-            // $table->foreignId('status_id');
-
+            $table->string('name');
+            $table->text('description')->nullable();
+            $table->date('start_date');
+            $table->date('end_date');
+            // foreign key
             $table->unsignedBigInteger('status_id')->nullable();
             $table->unsignedBigInteger('categories_id')->nullable();
             $table->foreign('status_id')->references('id')->on('statuses');
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('task');
+        Schema::dropIfExists('projects');
     }
 };
